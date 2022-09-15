@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './screens/home/home.component';
 import { CollectionComponent } from './screens/collection/collection.component';
 import { PlantCardComponent } from './shared/plant-card/plant-card.component';
+import { SearchComponent } from './screens/search/search.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PlantCardComponent } from './shared/plant-card/plant-card.component';
     HomeComponent,
     CollectionComponent,
     PlantCardComponent,
+    SearchComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],

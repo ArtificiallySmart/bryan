@@ -25,7 +25,7 @@ export class AppService {
     ];
   }
 
-  async checkResponse() {
+  async searchPlants() {
     return await this.apiService.getResult('monstera+deliciosa');
   }
 }

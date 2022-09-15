@@ -12,6 +12,10 @@ export class AppController {
 
   @Get('collection')
   async getData() {
-    return await this.appService.checkResponse();
+    return await this.appService.getData();
+  }
+  @Get('search')
+  async searchPlants() {
+    return await this.appService.searchPlants();
   }
 }

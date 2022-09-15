@@ -12,4 +12,8 @@ export class PlantService {
   getPlants(): Observable<Plant[]> {
     return this.http.get<Plant[]>('api/collection');
   }
+
+  searchPlants(): Observable<Plant> {
+    return this.http.get<Plant>('api/search');
+  }
 }
