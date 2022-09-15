@@ -17,7 +17,7 @@
           "apps/plant-app/src/favicon.ico",
           "apps/plant-app/src/assets"
         ],
-        "styles": ["apps/plant-app/src/styles.scss"],
+        "styles": ["node_modules/bootstrap/scss/bootstrap.scss","apps/plant-app/src/styles.scss"],
         "scripts": []
       },
       "configurations": {

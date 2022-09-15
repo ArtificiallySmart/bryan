@@ -1,0 +1,7 @@
+<h1>My Plant Collection</h1>
+
+<div class="row" *ngIf="plants">
+    <div class="col" *ngFor="let plant of plants">
+        <bryan-plant-card [plant]="plant"></bryan-plant-card>
+    </div>
+</div>
