@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 
 import { Message, Plant } from '@bryan/api-interfaces';
 
@@ -14,8 +14,9 @@ export class AppController {
   async getData() {
     return await this.appService.getData();
   }
+
   @Get('search')
-  async searchPlants() {
-    return await this.appService.searchPlants();
+  async searchPlants(@Query('search') search: string) {
+    return await this.appService.searchPlants(search);
   }
 }

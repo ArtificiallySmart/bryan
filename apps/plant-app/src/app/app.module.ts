@@ -10,6 +10,7 @@ import { HomeComponent } from './screens/home/home.component';
 import { CollectionComponent } from './screens/collection/collection.component';
 import { PlantCardComponent } from './shared/plant-card/plant-card.component';
 import { SearchComponent } from './screens/search/search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { SearchComponent } from './screens/search/search.component';
     PlantCardComponent,
     SearchComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

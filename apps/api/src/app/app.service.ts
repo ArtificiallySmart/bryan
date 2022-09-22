@@ -25,7 +25,15 @@ export class AppService {
     ];
   }
 
-  async searchPlants() {
-    return await this.apiService.getResult('monstera+deliciosa');
+  async searchPlants(query) {
+    const response = await this.apiService.getResult(query);
+    const { data } = response;
+    return data.map((plant) => {
+      return {
+        commonName: plant.common_name,
+        latinName: plant.scientific_name,
+        imageUrl: plant.image_url,
+      } as Plant;
+    });
   }
 }

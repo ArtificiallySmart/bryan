@@ -13,7 +13,7 @@ export class ApiService {
     private readonly configService: ConfigService
   ) {}
 
-  async getResult(query: string): Promise<AxiosResponse> {
+  async getResult(query: string) {
     const result = this.httpService.get(
       `${process.env.FLORA_API_URL}/v1/plants?key=${process.env.FLORA_API_KEY}&q=${query}`
     );

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Plant } from '@bryan/api-interfaces';
+import { firstValueFrom, Observable } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 
 @Component({
@@ -9,15 +11,20 @@ import { PlantService } from '../../services/plant.service';
 export class SearchComponent implements OnInit {
   constructor(private plantService: PlantService) {}
 
-  searchData: any;
+  @Input()
+  query: string | undefined;
 
-  ngOnInit(): void {
-    this.searchPlants();
+  searchResult!: Plant[];
+
+  ngOnInit(): void {}
+
+  async processInput() {
+    if (this.query && this.query.length) {
+      this.searchResult = await this.searchPlants(this.query);
+    }
   }
 
-  searchPlants() {
-    this.plantService
-      .searchPlants()
-      .subscribe((plants) => (this.searchData = plants));
+  async searchPlants(query: string) {
+    return await firstValueFrom(this.plantService.searchPlants(query));
   }
 }

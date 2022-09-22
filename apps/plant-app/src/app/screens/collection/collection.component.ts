@@ -13,10 +13,10 @@ export class CollectionComponent implements OnInit {
   plants: Plant[] = [];
 
   ngOnInit(): void {
-    this.getPlants();
+    //this.getPlants();
   }
 
-  getPlants() {
-    this.plantService.getPlants().subscribe((plants) => (this.plants = plants));
-  }
+  // getPlants() {
+  //   this.plantService.getPlants().subscribe((plants) => (this.plants = plants));
+  // }
 }

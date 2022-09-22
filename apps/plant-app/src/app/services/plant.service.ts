@@ -1,19 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Plant } from '@bryan/api-interfaces';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlantService {
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService, private http: HttpClient) {}
 
-  getPlants(): Observable<Plant[]> {
-    return this.http.get<Plant[]>('api/collection');
+  getPlants() {}
+
+  searchPlants(query: string): Observable<Plant[]> {
+    query.toLowerCase().replace(' ', '+');
+    return this.http
+      .get<Plant[]>(`api/search?search=${query}`)
+      .pipe(catchError(this.handleError<Plant[]>('searchPlants', [])));
   }
 
-  searchPlants(): Observable<Plant> {
-    return this.http.get<Plant>('api/search');
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 }
