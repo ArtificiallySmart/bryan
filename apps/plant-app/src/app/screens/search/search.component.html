@@ -8,9 +8,14 @@
         <label for="floatingInput">Search for a plant</label>
     </div>
 </div>
-<div *ngFor="let result of searchResult">
+<!-- <div *ngFor="let result of searchResult">
     <ul>
         <li>{{result.commonName}}</li>
         <li>{{result.latinName}}</li>
     </ul>
+</div> -->
+<div class="row" *ngIf="searchResult">
+    <div class="col" *ngFor="let result of searchResult">
+        <bryan-plant-card [plant]="result"></bryan-plant-card>
+    </div>
 </div>
