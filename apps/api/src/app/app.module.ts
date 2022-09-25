@@ -4,10 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
-import { ApiService } from './services/api/api.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import 'reflect-metadata';
-import { Plant } from './entities/plant.entity';
+import { PlantModule } from './plant/plant.module';
+import { Plant } from './plant/entities/plant.entity';
 
 @Module({
   imports: [
@@ -24,8 +24,9 @@ import { Plant } from './entities/plant.entity';
       synchronize: true,
       logging: false,
     }),
+    PlantModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ApiService],
+  providers: [AppService],
 })
 export class AppModule {}

@@ -27,4 +27,8 @@ export class SearchComponent implements OnInit {
   async searchPlants(query: string) {
     return await firstValueFrom(this.plantService.searchPlants(query));
   }
+
+  async addToCollection(id: any) {
+    this.plantService.addPlant(id);
+  }
 }

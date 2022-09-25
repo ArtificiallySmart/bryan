@@ -10,12 +10,12 @@ import { ApiService } from './api.service';
 export class PlantService {
   constructor(private apiService: ApiService, private http: HttpClient) {}
 
-  getPlants() {}
+  addPlant(id: string) {}
 
   searchPlants(query: string): Observable<Plant[]> {
     query.toLowerCase().replace(' ', '+');
     return this.http
-      .get<Plant[]>(`api/search?search=${query}`)
+      .get<Plant[]>(`api/plant/search?search=${query}`)
       .pipe(catchError(this.handleError<Plant[]>('searchPlants', [])));
   }
 

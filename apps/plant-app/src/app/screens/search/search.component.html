@@ -1,21 +1,17 @@
 <h1>Search a Plant</h1>
-<div class="input-group my-3">
-    <span class="input-group-text btn btn-success" (click)="processInput()">
-        Search
-    </span>
-    <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="query">
-        <label for="floatingInput">Search for a plant</label>
+<form>
+    <div class="input-group my-3">
+        <button type="submit" class="input-group-text btn btn-success" (click)="processInput()">Search</button>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                [(ngModel)]="query" (keyup.enter)="processInput()" name="search">
+            <label for="floatingInput">Search for a plant</label>
+        </div>
     </div>
-</div>
-<!-- <div *ngFor="let result of searchResult">
-    <ul>
-        <li>{{result.commonName}}</li>
-        <li>{{result.latinName}}</li>
-    </ul>
-</div> -->
-<div class="row" *ngIf="searchResult">
-    <div class="col" *ngFor="let result of searchResult">
-        <bryan-plant-card [plant]="result"></bryan-plant-card>
+</form>
+
+<div class="row " *ngIf="searchResult">
+    <div class="col-3" *ngFor="let result of searchResult">
+        <bryan-plant-card [plant]="result" (addToCollectionEvent)="addToCollection($event)"></bryan-plant-card>
     </div>
 </div>
