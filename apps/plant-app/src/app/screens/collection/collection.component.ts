@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Plant } from '@bryan/api-interfaces';
+import { firstValueFrom } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 
 @Component({
@@ -13,10 +14,10 @@ export class CollectionComponent implements OnInit {
   plants: Plant[] = [];
 
   ngOnInit(): void {
-    //this.getPlants();
+    this.getPlants();
   }
 
-  // getPlants() {
-  //   this.plantService.getPlants().subscribe((plants) => (this.plants = plants));
-  // }
+  async getPlants() {
+    this.plants = await firstValueFrom(this.plantService.getPlants());
+  }
 }

@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
   query: string | undefined;
 
   searchResult!: Plant[];
+  plantsFound: boolean = true;
 
   ngOnInit(): void {}
 
@@ -25,10 +26,17 @@ export class SearchComponent implements OnInit {
   }
 
   async searchPlants(query: string) {
-    return await firstValueFrom(this.plantService.searchPlants(query));
+    let result = await firstValueFrom(this.plantService.searchPlants(query));
+    this.plantsFound = !!result;
+    return result;
   }
 
   async addToCollection(id: any) {
+    console.log(id);
     this.plantService.addPlant(id);
+  }
+
+  async createPlant(plant: Plant) {
+    this.plantService.createPlant(plant);
   }
 }

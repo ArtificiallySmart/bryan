@@ -5,15 +5,15 @@ export class Plant {
   @PrimaryColumn()
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   commonName: string;
 
-  @Column()
+  @Column({ nullable: true })
   scientificName: string;
 
-  @Column()
+  @Column({ nullable: true })
   imageUrl: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 }

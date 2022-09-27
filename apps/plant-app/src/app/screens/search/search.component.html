@@ -15,3 +15,7 @@
         <bryan-plant-card [plant]="result" (addToCollectionEvent)="addToCollection($event)"></bryan-plant-card>
     </div>
 </div>
+
+<div class="row " *ngIf="!plantsFound">
+    No plants have been found. Would you like to add one manually?
+</div>

@@ -4,19 +4,33 @@ import { UpdatePlantDto } from '../dto/update-plant.dto';
 import { Plant } from '../entities/plant.entity';
 import { DataSource } from 'typeorm';
 import { ApiService } from './api.service';
+import { DbService } from './db/db.service';
 
 @Injectable()
 export class PlantService {
-  constructor(private apiService: ApiService, private dataSource: DataSource) {}
+  constructor(
+    private apiService: ApiService,
+    private dataSource: DataSource,
+    private dbService: DbService
+  ) {}
 
   plantRepository = this.dataSource.getRepository(Plant);
 
-  create(createPlantDto: CreatePlantDto) {
-    return 'This action adds a new plant';
+  async create(id) {
+    const response = await this.apiService.getResult(id, 'specific');
+    const { data } = response;
+    let test = {
+      id: data.id,
+      commonName: data.common_name,
+      scientificName: data.scientific_name,
+      imageUrl: data.main_species.image_url,
+    };
+    this.dbService.create(test);
+    console.log(test);
   }
 
   findAll() {
-    return `This action returns all plant`;
+    return this.dbService.findAll();
   }
 
   findOne(id: number) {
@@ -39,7 +53,7 @@ export class PlantService {
         return {
           id: plant.id,
           commonName: plant.common_name,
-          latinName: plant.scientific_name,
+          scientificName: plant.scientific_name,
           imageUrl: plant.image_url,
           inCollection: await this.inCollection(plant.id),
         } as Partial<Plant>;

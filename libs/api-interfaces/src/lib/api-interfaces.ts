@@ -4,7 +4,7 @@ export interface Message {
 export interface Plant {
   id: string;
   commonName: string;
-  latinName: string;
+  scientificName: string;
   imageUrl: string;
   inCollection: boolean;
 }

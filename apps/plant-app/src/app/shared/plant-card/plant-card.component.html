@@ -2,7 +2,7 @@
     <img [attr.src]="plant.imageUrl" class="card-img-top img-fluid" alt="...">
     <div class="card-body">
         <h5 class="card-title">{{ plant.commonName }}</h5>
-        <p class="card-text">{{ plant.latinName }}</p>
+        <p class="card-text">{{ plant.scientificName }}</p>
         <button href="#" class="btn btn-primary" [disabled]="plant.inCollection" (click)="addToCollection()">
             {{ collectionText }}
         </button>

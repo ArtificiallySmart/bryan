@@ -17,8 +17,14 @@ export class PlantController {
   constructor(private readonly plantService: PlantService) {}
 
   @Post()
-  create(@Body() createPlantDto: CreatePlantDto) {
-    return this.plantService.create(createPlantDto);
+  async addPlant(@Body() body) {
+    console.log(body);
+    //return this.plantService.create(body.id);
+  }
+
+  @Post(':id')
+  async createPlant(@Param('id') id: string) {
+    return this.plantService.create(id);
   }
 
   @Get()

@@ -13,12 +13,26 @@ export class ApiService {
     private readonly configService: ConfigService
   ) {}
 
-  async getResult(query: string) {
-    const result = this.httpService.get(
-      `${process.env.FLORA_API_URL}/v1/plants?key=${process.env.FLORA_API_KEY}&q=${query}`
-    );
-    return await (
-      await lastValueFrom(result)
-    ).data;
+  async getResult(
+    query: string,
+    searchType: 'general' | 'specific' = 'general'
+  ) {
+    const baseUrl = process.env.FLORA_API_URL;
+    const key = `?key=${process.env.FLORA_API_KEY}`;
+
+    let requestUrl: string;
+
+    switch (searchType) {
+      case 'specific':
+        requestUrl = `${baseUrl}/v1/plants/${query}${key}`;
+        break;
+      case 'general':
+        requestUrl = `${baseUrl}/v1/plants${key}&q=${query}`;
+        break;
+      default:
+        break;
+    }
+    const result = await lastValueFrom(this.httpService.get(requestUrl));
+    return searchType == 'specific' ? result : result.data;
   }
 }

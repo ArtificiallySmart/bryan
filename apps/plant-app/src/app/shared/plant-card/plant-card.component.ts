@@ -25,5 +25,6 @@ export class PlantCardComponent implements OnInit {
     this.plant.inCollection = !this.plant.inCollection;
     this.collectionText = 'Added to your collection!';
     this.addToCollectionEvent.emit(this.plant.id);
+    console.log(this.plant.id);
   }
 }
