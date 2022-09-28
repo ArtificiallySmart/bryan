@@ -8,23 +8,19 @@ import { Plant } from '@bryan/api-interfaces';
 })
 export class PlantCardComponent implements OnInit {
   constructor() {}
-  collectionText: string = '';
+
   @Input()
   plant!: Plant;
 
+  @Input()
+  buttonText!: string;
+
   @Output()
-  addToCollectionEvent = new EventEmitter<string>();
+  clickEvent = new EventEmitter<Plant>();
 
-  ngOnInit() {
-    this.collectionText = this.plant.inCollection
-      ? 'Already in your collection'
-      : 'Add to your collection';
-  }
+  ngOnInit() {}
 
-  addToCollection() {
-    this.plant.inCollection = !this.plant.inCollection;
-    this.collectionText = 'Added to your collection!';
-    this.addToCollectionEvent.emit(this.plant.id);
-    console.log(this.plant.id);
+  buttonClick() {
+    this.clickEvent.emit(this.plant);
   }
 }

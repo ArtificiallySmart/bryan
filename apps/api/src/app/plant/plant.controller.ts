@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   Query,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { PlantService } from './services/plant.service';
 import { CreatePlantDto } from './dto/create-plant.dto';
@@ -19,12 +21,22 @@ export class PlantController {
   @Post()
   async addPlant(@Body() body) {
     console.log(body);
-    //return this.plantService.create(body.id);
+    return this.plantService.createPlant(body);
   }
 
   @Post(':id')
   async createPlant(@Param('id') id: string) {
-    return this.plantService.create(id);
+    try {
+      await this.plantService.addPlant(id);
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: 'Something went wrong, please try again later',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
+    }
   }
 
   @Get()

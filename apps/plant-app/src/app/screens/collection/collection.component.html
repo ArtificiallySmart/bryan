@@ -1,7 +1,14 @@
 <h1>My Plant Collection</h1>
 
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    You have {{ incompletePlants }} plants that are missing information.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
+
 <div class="row " *ngIf="plants">
     <div class="col-3" *ngFor="let plant of plants">
-        <bryan-plant-card [plant]="plant"></bryan-plant-card>
+        <bryan-plant-card [plant]="plant" [buttonText]="buttonText"></bryan-plant-card>
     </div>
 </div>

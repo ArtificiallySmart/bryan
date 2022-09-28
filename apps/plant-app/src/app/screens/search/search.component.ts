@@ -27,13 +27,19 @@ export class SearchComponent implements OnInit {
 
   async searchPlants(query: string) {
     let result = await firstValueFrom(this.plantService.searchPlants(query));
-    this.plantsFound = !!result;
+    this.plantsFound = !!result.length;
     return result;
   }
 
-  async addToCollection(id: any) {
-    console.log(id);
-    this.plantService.addPlant(id);
+  buttonText(inCollection: boolean) {
+    return inCollection
+      ? 'Already in your collection'
+      : 'Add to your collection';
+  }
+
+  async addToCollection(plant: Plant) {
+    this.plantService.addPlant(plant.id);
+    plant.inCollection = true;
   }
 
   async createPlant(plant: Plant) {

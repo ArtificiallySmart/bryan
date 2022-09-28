@@ -3,8 +3,8 @@
     <div class="card-body">
         <h5 class="card-title">{{ plant.commonName }}</h5>
         <p class="card-text">{{ plant.scientificName }}</p>
-        <button href="#" class="btn btn-primary" [disabled]="plant.inCollection" (click)="addToCollection()">
-            {{ collectionText }}
+        <button href="#" class="btn btn-primary" [disabled]="plant.inCollection" (click)="buttonClick()">
+            {{ buttonText }}
         </button>
     </div>
 </div>

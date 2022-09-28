@@ -1,0 +1,17 @@
+<form class="form-floating mt-3" [formGroup]="createPlantForm" (ngSubmit)="onSubmit(createPlantForm)">
+    <div class="form-floating mb-3">
+        <input class="form-control" [ngClass]="isInvalid('commonName')" formControlName="commonName" placeholder="name"
+            id="floatingCommonName">
+        <label for="floatingCommonName">Common name</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" [ngClass]="isInvalid('scientificName')" formControlName="scientificName"
+            id="floatingScientificName" placeholder="sn">
+        <label for="floatingScientificName">Scientific name</label>
+    </div>
+    <!-- <div class="mb-3">
+        <label for="formFile" class="form-label">Upload image</label>
+        <input class="form-control" type="file" id="formFile" formControlName="fileInput" (change)="upload($event)">
+    </div> -->
+    <button type="submit"> send </button>
+</form>

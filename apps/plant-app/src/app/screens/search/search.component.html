@@ -12,10 +12,12 @@
 
 <div class="row " *ngIf="searchResult">
     <div class="col-3" *ngFor="let result of searchResult">
-        <bryan-plant-card [plant]="result" (addToCollectionEvent)="addToCollection($event)"></bryan-plant-card>
+        <bryan-plant-card [plant]="result" (clickEvent)="addToCollection($event)"
+            [buttonText]="buttonText(result.inCollection)">
+        </bryan-plant-card>
     </div>
 </div>
 
 <div class="row " *ngIf="!plantsFound">
-    No plants have been found. Would you like to add one manually?
+    No plants have been found. Click <a routerLink="/create-plant">here</a> to enter a plant manually.
 </div>

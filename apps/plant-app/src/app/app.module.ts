@@ -11,6 +11,9 @@ import { CollectionComponent } from './screens/collection/collection.component';
 import { PlantCardComponent } from './shared/plant-card/plant-card.component';
 import { SearchComponent } from './screens/search/search.component';
 import { FormsModule } from '@angular/forms';
+import { CreatePlantComponent } from './screens/create-plant/create-plant.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,8 +24,16 @@ import { FormsModule } from '@angular/forms';
     CollectionComponent,
     PlantCardComponent,
     SearchComponent,
+    CreatePlantComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

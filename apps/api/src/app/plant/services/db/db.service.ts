@@ -10,7 +10,7 @@ export class DbService {
 
   async create(plant) {
     const newPlant = this.plantRepository.create(plant);
-    await this.plantRepository.save(plant);
+    await this.plantRepository.save(newPlant);
   }
 
   async findAll() {

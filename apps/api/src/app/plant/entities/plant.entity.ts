@@ -13,7 +13,4 @@ export class Plant {
 
   @Column({ nullable: true })
   imageUrl: string;
-
-  @Column({ nullable: true })
-  description: string;
 }

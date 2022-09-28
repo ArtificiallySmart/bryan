@@ -5,6 +5,7 @@ import { Plant } from '../entities/plant.entity';
 import { DataSource } from 'typeorm';
 import { ApiService } from './api.service';
 import { DbService } from './db/db.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class PlantService {
@@ -16,7 +17,13 @@ export class PlantService {
 
   plantRepository = this.dataSource.getRepository(Plant);
 
-  async create(id) {
+  async createPlant(body) {
+    let { plant } = body;
+    plant.id = uuidv4();
+    this.dbService.create(plant);
+  }
+
+  async addPlant(id) {
     const response = await this.apiService.getResult(id, 'specific');
     const { data } = response;
     let test = {
