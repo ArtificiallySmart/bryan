@@ -1,4 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+    font-family: MillerDisplayRoman;
+    src: url(./assets/fonts/Miller-Display-Roman.otf);
+}
+@font-face {
+    font-family: GranvilleBold;
+    src: url(./assets/fonts/Granville-Bold.otf);
+}
+@font-face {
+    font-family: CallunaSans;
+    src: url(./assets/fonts/CallunaSans-Regular.otf);
+}
+@mixin all-headings {
+  @for $index from 1 through 6 {
+	  h#{$index} {
+       @content;
+    }
+  }
+}
+@font-face {font-family: "CallunaSansW01"; 
+    src: url("//db.onlinewebfonts.com/t/bc6a00ab9ad1ae3ec8fe3e4f7bbd7ee4.eot"); 
+    src: url("//db.onlinewebfonts.com/t/bc6a00ab9ad1ae3ec8fe3e4f7bbd7ee4.eot?#iefix") format("embedded-opentype"), 
+    url("//db.onlinewebfonts.com/t/bc6a00ab9ad1ae3ec8fe3e4f7bbd7ee4.woff2") format("woff2"), 
+    url("//db.onlinewebfonts.com/t/bc6a00ab9ad1ae3ec8fe3e4f7bbd7ee4.woff") format("woff"), 
+    url("//db.onlinewebfonts.com/t/bc6a00ab9ad1ae3ec8fe3e4f7bbd7ee4.ttf") format("truetype"), 
+    url("//db.onlinewebfonts.com/t/bc6a00ab9ad1ae3ec8fe3e4f7bbd7ee4.svg#CallunaSansW01-Light") format("svg"); }
+
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+@import './variables.scss';
+
+@include all-headings {
+    font-family: MillerDisplay;
+}
+
+body{
+    background-color: $background-beige;
+}
+
+nav{
+    background-color: $nav-green;
+}
+
+a.nav-link{
+    font-family: CallunaSansW01;
+}
