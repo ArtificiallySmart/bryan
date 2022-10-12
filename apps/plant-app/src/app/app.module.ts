@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CreatePlantComponent } from './screens/create-plant/create-plant.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxsModule } from '@ngxs/store';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CreatePlantComponent,
   ],
   imports: [
+    NgxsModule.forRoot([]),
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

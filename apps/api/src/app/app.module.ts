@@ -8,6 +8,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import 'reflect-metadata';
 import { PlantModule } from './plant/plant.module';
 import { Plant } from './plant/entities/plant.entity';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -25,6 +28,8 @@ import { Plant } from './plant/entities/plant.entity';
       logging: false,
     }),
     PlantModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
