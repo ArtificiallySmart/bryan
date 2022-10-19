@@ -62,19 +62,9 @@ export class PlantService {
           commonName: plant.common_name,
           scientificName: plant.scientific_name,
           imageUrl: plant.image_url,
-          inCollection: await this.inCollection(plant.id),
         } as Partial<Plant>;
       })
     );
     return test;
-  }
-
-  async inCollection(id: string) {
-    let plant = await this.plantRepository.findOne({
-      where: {
-        id: id,
-      },
-    });
-    return plant ? true : false;
   }
 }

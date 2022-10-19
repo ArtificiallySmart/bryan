@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 
-import { Message, Plant } from '@bryan/api-interfaces';
+import { Plant } from '@bryan/api-interfaces';
 
 import { AppService } from './app.service';
 

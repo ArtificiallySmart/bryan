@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:4200",
+      "reAttach": true,
+
+      "webRoot": "${workspaceFolder}/apps/plant-app"
+    },
+
+    {
+      "name": "Debug Node App",
+      "type": "node",
+      "request": "attach",
+      "port": 9229
+    }
+  ]
+}

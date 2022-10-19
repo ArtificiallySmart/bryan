@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "Local": {
+      "Name": "Local",
+      "Group": "Local",
+      "Port": 5432,
+      "Username": "plant-app",
+      "Host": "db",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "postgres"
+    }
+  }
+}
