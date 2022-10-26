@@ -13,7 +13,13 @@ import { FormsModule } from '@angular/forms';
 import { CreatePlantComponent } from './screens/create-plant/create-plant.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxsModule } from '@ngxs/store';
+import { EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './entity-metadata';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from '../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +30,19 @@ import { NgxsModule } from '@ngxs/store';
     PlantCardComponent,
     SearchComponent,
     CreatePlantComponent,
+    LoaderComponent,
   ],
   imports: [
-    NgxsModule.forRoot([]),
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EntityDataModule.forRoot(entityConfig),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -6,25 +6,40 @@ import {
   Patch,
   Param,
   Delete,
-  Query,
   HttpException,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { PlantService } from './services/plant.service';
 import { CreatePlantDto } from './dto/create-plant.dto';
 import { UpdatePlantDto } from './dto/update-plant.dto';
 
-@Controller('plant')
+@Controller()
 export class PlantController {
   constructor(private readonly plantService: PlantService) {}
 
-  @Post()
+  @Get('plants')
+  findAll() {
+    return this.plantService.findAll();
+  }
+
+  @Get('plant/:id')
+  findOne(@Param('id') id: string) {
+    return this.plantService.findOne(+id);
+  }
+
+  @Get('/search')
+  search(@Query('search') query: string) {
+    return this.plantService.searchPlants(query);
+  }
+
+  @Post('plant')
   async addPlant(@Body() body) {
     console.log(body);
     return this.plantService.createPlant(body);
   }
 
-  @Post(':id')
+  @Post('plant/:id')
   async createPlant(@Param('id') id: string) {
     try {
       await this.plantService.addPlant(id);
@@ -39,27 +54,12 @@ export class PlantController {
     }
   }
 
-  @Get()
-  findAll() {
-    return this.plantService.findAll();
-  }
-
-  @Get('/search')
-  async searchPlants(@Query('search') search: string) {
-    return await this.plantService.searchPlants(search);
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.plantService.findOne(+id);
-  }
-
-  @Patch(':id')
+  @Patch('plant/:id')
   update(@Param('id') id: string, @Body() updatePlantDto: UpdatePlantDto) {
     return this.plantService.update(+id, updatePlantDto);
   }
 
-  @Delete(':id')
+  @Delete('plant/:id')
   remove(@Param('id') id: string) {
     return this.plantService.remove(+id);
   }

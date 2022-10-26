@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+
+.leafSvg {
+  height: 100px;
+  width: 100px;
+}
+
+.leafSvg-animate {
+  transition: clip-path 2s;
+  animation: 2s leafLodaing;
+  animation-iteration-count: infinite;
+}
+
+.leafSvg-green {
+  //position: absolute;
+  fill: #7ab51d
+}
+
+.leafSvg-grey {
+//  position: absolute;
+  fill: #b4b4b4
+}
+
+.example-1 {
+  position: relative;
+}
+
+
+@keyframes leafLodaing {
+  0% { clip-path: polygon(0% 100%, 0% 100%, 100% 100%, 100% 100%) }
+  100% { clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%) }
+}

@@ -10,8 +10,8 @@
     </div>
 </form>
 
-<div class="row " *ngIf="searchResult">
-    <div class="col-3" *ngFor="let result of searchResult">
+<div class="row ">
+    <div class="col-3" *ngFor="let result of searchResult$ | async">
         <bryan-plant-card [plant]="result" (clickEvent)="addToCollection($event)"
             [buttonText]="buttonText(result.inCollection)">
         </bryan-plant-card>

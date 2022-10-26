@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Plant } from '@bryan/api-interfaces';
-import { firstValueFrom } from 'rxjs';
+import { Component } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 
 @Component({
@@ -8,23 +7,27 @@ import { PlantService } from '../../services/plant.service';
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.scss'],
 })
-export class CollectionComponent implements OnInit {
-  constructor(private plantService: PlantService) {}
-
-  plants: Plant[] = [];
-  buttonText = 'Remove this plant from my collection';
-  incompletePlants: number = 0;
-
-  ngOnInit(): void {
-    this.getPlants();
-  }
-
-  async getPlants() {
-    this.plants = await firstValueFrom(this.plantService.getPlants());
-    for (const plant of this.plants) {
-      if (Object.values(plant).includes(null)) {
-        this.incompletePlants++;
+export class CollectionComponent {
+  loading$: Observable<boolean>;
+  plants$ = this.plantService.getAll();
+  incompletePlants$ = this.plants$.pipe(
+    map((plants) => {
+      let count = 0;
+      for (const plant of plants) {
+        if (Object.values(plant).includes(null)) {
+          count++;
+        }
       }
-    }
+      return count;
+    })
+  );
+
+  buttonText = 'Remove this plant from my collection';
+
+  constructor(private plantService: PlantService) {
+    this.loading$ = plantService.loading$;
+    this.plants$ = plantService.entities$;
   }
+
+  incompletePlants = 0;
 }

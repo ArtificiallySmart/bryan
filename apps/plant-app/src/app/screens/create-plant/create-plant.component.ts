@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PlantService } from '../../services/plant.service';
 import { Plant } from '@bryan/api-interfaces';
@@ -8,7 +8,7 @@ import { Plant } from '@bryan/api-interfaces';
   templateUrl: './create-plant.component.html',
   styleUrls: ['./create-plant.component.scss'],
 })
-export class CreatePlantComponent implements OnInit {
+export class CreatePlantComponent {
   constructor(
     private formBuilder: FormBuilder,
     private plantService: PlantService
@@ -25,8 +25,6 @@ export class CreatePlantComponent implements OnInit {
     ],
     // fileInput: ['', [Validators.required]],
   });
-
-  ngOnInit(): void {}
 
   isInvalid(formControlName: string) {
     if (
@@ -55,6 +53,6 @@ export class CreatePlantComponent implements OnInit {
     console.log(form);
     console.log('Common name', form.value.commonName);
     console.log('Scientific name', form.value.scientificName);
-    this.plantService.createPlant(form.value as Plant);
+    this.plantService.add(form.value as Plant);
   }
 }

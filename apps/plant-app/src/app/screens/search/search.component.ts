@@ -1,34 +1,30 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Plant } from '@bryan/api-interfaces';
-import { firstValueFrom, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'bryan-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit {
-  constructor(private plantService: PlantService) {}
+export class SearchComponent {
+  constructor(
+    private plantService: PlantService,
+    private searchService: SearchService
+  ) {}
 
   @Input()
   query: string | undefined;
 
-  searchResult!: Plant[];
-  plantsFound: boolean = true;
-
-  ngOnInit(): void {}
+  searchResult$!: Observable<Plant[]>;
+  plantsFound = true;
 
   async processInput() {
     if (this.query && this.query.length) {
-      this.searchResult = await this.searchPlants(this.query);
+      this.searchResult$ = this.searchService.searchPlants(this.query);
     }
-  }
-
-  async searchPlants(query: string) {
-    let result = await firstValueFrom(this.plantService.searchPlants(query));
-    this.plantsFound = !!result.length;
-    return result;
   }
 
   buttonText(inCollection: boolean) {
@@ -38,11 +34,10 @@ export class SearchComponent implements OnInit {
   }
 
   async addToCollection(plant: Plant) {
-    this.plantService.addPlant(plant.id);
-    plant.inCollection = true;
+    this.plantService.add(plant);
   }
 
   async createPlant(plant: Plant) {
-    this.plantService.createPlant(plant);
+    this.plantService.add(plant);
   }
 }

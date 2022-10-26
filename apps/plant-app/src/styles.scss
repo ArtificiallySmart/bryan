@@ -37,11 +37,16 @@
 }
 
 body{
-    background-color: $background-beige;
+    height: 100vh;
+    background-image: url('./assets/images/B_plants_in_pots.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-color: var(--background-beige);
+    background-attachment: fixed;
 }
 
 nav{
-    background-color: $nav-green;
+    background-color: var(--nav-green);
 }
 
 a.nav-link, p{
@@ -49,10 +54,10 @@ a.nav-link, p{
 }
 
 .alert-warning{
-    background-color: $nice-red;
+    background-color: var(--nice-red);
 }
 
 .btn{
-    background-color: $nav-green;
+    background-color: var(--nav-green);
     font-family: CallunaSansW01;
 }
