@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit {
 
   async addToCollection(plant: Plant) {
     this.plantService.addPlant(plant.id);
-    //plant.inCollection = true;
+    plant.inCollection = true;
   }
 
   async createPlant(plant: Plant) {

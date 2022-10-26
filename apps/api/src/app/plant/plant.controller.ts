@@ -13,26 +13,10 @@ import {
 import { PlantService } from './services/plant.service';
 import { CreatePlantDto } from './dto/create-plant.dto';
 import { UpdatePlantDto } from './dto/update-plant.dto';
-import { Plant } from '@bryan/api-interfaces';
 
 @Controller('plant')
 export class PlantController {
   constructor(private readonly plantService: PlantService) {}
-
-  @Get()
-  findAll(): Promise<Plant[]> {
-    return this.plantService.findAll();
-  }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.plantService.findOne(+id);
-  // }
-
-  @Get('/search')
-  async searchPlants(@Query('search') search: string): Promise<Plant[]> {
-    return await this.plantService.searchPlants(search);
-  }
 
   @Post()
   async addPlant(@Body() body) {
@@ -53,6 +37,21 @@ export class PlantController {
         HttpStatus.INTERNAL_SERVER_ERROR
       );
     }
+  }
+
+  @Get()
+  findAll() {
+    return this.plantService.findAll();
+  }
+
+  @Get('/search')
+  async searchPlants(@Query('search') search: string) {
+    return await this.plantService.searchPlants(search);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.plantService.findOne(+id);
   }
 
   @Patch(':id')

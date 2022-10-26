@@ -12,7 +12,8 @@
 
 <div class="row " *ngIf="searchResult">
     <div class="col-3" *ngFor="let result of searchResult">
-        <bryan-plant-card [plant]="result" (clickEvent)="addToCollection($event)">
+        <bryan-plant-card [plant]="result" (clickEvent)="addToCollection($event)"
+            [buttonText]="buttonText(result.inCollection)">
         </bryan-plant-card>
     </div>
 </div>
