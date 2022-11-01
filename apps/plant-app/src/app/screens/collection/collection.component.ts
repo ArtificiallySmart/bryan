@@ -8,8 +8,8 @@ import { PlantService } from '../../services/plant.service';
   styleUrls: ['./collection.component.scss'],
 })
 export class CollectionComponent {
-  loading$: Observable<boolean>;
-  plants$ = this.plantService.getAll();
+  loading$ = this.plantService.loading$;
+  plants$ = this.plantService.entities$;
   incompletePlants$ = this.plants$.pipe(
     map((plants) => {
       let count = 0;
@@ -24,10 +24,7 @@ export class CollectionComponent {
 
   buttonText = 'Remove this plant from my collection';
 
-  constructor(private plantService: PlantService) {
-    this.loading$ = plantService.loading$;
-    this.plants$ = plantService.entities$;
-  }
+  constructor(private plantService: PlantService) {}
 
   incompletePlants = 0;
 }
