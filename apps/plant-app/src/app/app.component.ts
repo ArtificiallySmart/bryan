@@ -7,6 +7,7 @@ import { PlantService } from './services/plant.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  plants$ = this.plantService.getAll();
-  constructor(private plantService: PlantService) {}
+  constructor(private plantService: PlantService) {
+    plantService.getAll();
+  }
 }
