@@ -6,13 +6,5 @@
     "api-interfaces": "libs/api-interfaces",
     "plant-app": "apps/plant-app",
     "plant-app-e2e": "apps/plant-app-e2e"
-  },
-  "styles": [
-    "node_modules/bootstrap/scss/bootstrap.scss",
-    "node_modules/bootstrap-icons/font/bootstrap-icons.scss",
-    "apps/plant-app/src/styles.scss"
-  ],
-  "scripts": [
-    "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-  ]
+  }
 }

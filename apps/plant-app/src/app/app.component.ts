@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@bryan/api-interfaces';
+import { PlantService } from './services/plant.service';
 
 @Component({
   selector: 'bryan-root',
@@ -8,6 +7,6 @@ import { Message } from '@bryan/api-interfaces';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  plants$ = this.plantService.getAll();
+  constructor(private plantService: PlantService) {}
 }

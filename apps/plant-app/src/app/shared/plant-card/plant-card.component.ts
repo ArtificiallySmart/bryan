@@ -1,26 +1,31 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Plant } from '@bryan/api-interfaces';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'bryan-plant-card',
   templateUrl: './plant-card.component.html',
   styleUrls: ['./plant-card.component.scss'],
 })
-export class PlantCardComponent implements OnInit {
-  constructor() {}
-
+export class PlantCardComponent {
+  constructor(private modalService: NgbModal) {}
+  closeResult = '';
   @Input()
   plant!: Plant;
-
-  @Input()
-  buttonText!: string;
 
   @Output()
   clickEvent = new EventEmitter<Plant>();
 
-  ngOnInit() {}
-
-  buttonClick() {
-    this.clickEvent.emit(this.plant);
+  open(content: unknown) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        () => {
+          this.closeResult = `Dismissed`;
+        }
+      );
   }
 }

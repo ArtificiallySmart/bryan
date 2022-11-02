@@ -12,8 +12,11 @@
 
 <div class="row ">
     <div class="col-3" *ngFor="let result of searchResult$ | async">
-        <bryan-plant-card [plant]="result" (clickEvent)="addToCollection($event)"
-            [buttonText]="buttonText(result.inCollection)">
+        <bryan-plant-card [plant]="result">
+            <button href="#" class="btn btn-primary" [disabled]="isInCollection(result.id)"
+                (click)="addToCollection(result)">
+                {{ isInCollection(result.id) ? 'Already in your collection' : 'Add to collection' }}
+            </button>
         </bryan-plant-card>
     </div>
 </div>

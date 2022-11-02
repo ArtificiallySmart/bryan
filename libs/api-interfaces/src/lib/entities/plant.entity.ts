@@ -1,16 +1,16 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
-export class Plant {
+export class PlantEntity {
   @PrimaryColumn()
-  id: string;
+  id!: string;
 
   @Column({ nullable: true })
-  commonName: string;
+  commonName?: string;
 
   @Column({ nullable: true })
-  scientificName: string;
+  scientificName?: string;
 
   @Column({ nullable: true })
-  imageUrl: string;
+  imageUrl?: string;
 }

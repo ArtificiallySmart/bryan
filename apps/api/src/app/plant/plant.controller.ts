@@ -1,18 +1,15 @@
+import { CreatePlantDto, UpdatePlantDto } from '@bryan/api-interfaces';
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
-  HttpException,
-  HttpStatus,
+  Get,
+  Param,
+  Patch,
+  Post,
   Query,
 } from '@nestjs/common';
 import { PlantService } from './services/plant.service';
-import { CreatePlantDto } from './dto/create-plant.dto';
-import { UpdatePlantDto } from './dto/update-plant.dto';
 
 @Controller()
 export class PlantController {
@@ -34,24 +31,8 @@ export class PlantController {
   }
 
   @Post('plant')
-  async addPlant(@Body() body) {
-    console.log(body);
-    return this.plantService.createPlant(body);
-  }
-
-  @Post('plant/:id')
-  async createPlant(@Param('id') id: string) {
-    try {
-      await this.plantService.addPlant(id);
-    } catch (error) {
-      throw new HttpException(
-        {
-          status: HttpStatus.INTERNAL_SERVER_ERROR,
-          error: 'Something went wrong, please try again later',
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR
-      );
-    }
+  async addPlant(@Body() body: CreatePlantDto) {
+    return this.plantService.addPlant(body);
   }
 
   @Patch('plant/:id')
@@ -61,6 +42,6 @@ export class PlantController {
 
   @Delete('plant/:id')
   remove(@Param('id') id: string) {
-    return this.plantService.remove(+id);
+    return this.plantService.remove(id);
   }
 }

@@ -1,1 +1,8 @@
-export * from './lib/api-interfaces';
+//dto's
+export * from './lib/dtos';
+
+//entities
+export * from './lib/entities';
+
+//interfaces
+export * from './lib/interfaces';

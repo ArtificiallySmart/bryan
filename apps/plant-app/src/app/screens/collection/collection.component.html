@@ -10,7 +10,12 @@
 
     <div class="row " *ngIf="plants$ | async">
         <div class="col-3" *ngFor="let plant of plants$ | async">
-            <bryan-plant-card [plant]="plant" [buttonText]="buttonText"></bryan-plant-card>
+            <bryan-plant-card [plant]="plant">
+                <button href="#" class="btn btn-primary" (click)="removeFromCollection(plant.id)">
+                    delete plant
+                </button>
+                <button href="#" class="btn btn-primary">Edit plant</button>
+            </bryan-plant-card>
         </div>
     </div>
 </ng-container>

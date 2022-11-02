@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Plant } from '@bryan/api-interfaces';
+import { map, Observable, of } from 'rxjs';
 import { PlantService } from '../../services/plant.service';
 
 @Component({
@@ -8,8 +9,9 @@ import { PlantService } from '../../services/plant.service';
   styleUrls: ['./collection.component.scss'],
 })
 export class CollectionComponent {
+  closeResult = '';
   loading$: Observable<boolean>;
-  plants$ = this.plantService.getAll();
+  plants$: Observable<Plant[]> = of([]);
   incompletePlants$ = this.plants$.pipe(
     map((plants) => {
       let count = 0;
@@ -22,12 +24,12 @@ export class CollectionComponent {
     })
   );
 
-  buttonText = 'Remove this plant from my collection';
+  removeFromCollection(id: string) {
+    this.plantService.delete(id);
+  }
 
   constructor(private plantService: PlantService) {
     this.loading$ = plantService.loading$;
-    this.plants$ = plantService.entities$;
+    this.plants$ = this.plantService.entities$;
   }
-
-  incompletePlants = 0;
 }

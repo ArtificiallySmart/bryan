@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePlantDto } from '../dto/create-plant.dto';
-import { UpdatePlantDto } from '../dto/update-plant.dto';
-import { Plant } from '../entities/plant.entity';
+import {
+  CreatePlantDto,
+  Plant,
+  UpdatePlantDto,
+  PlantEntity,
+} from '@bryan/api-interfaces';
 import { DataSource } from 'typeorm';
 import { ApiService } from './api.service';
 import { DbService } from './db/db.service';
@@ -15,25 +18,16 @@ export class PlantService {
     private dbService: DbService
   ) {}
 
-  plantRepository = this.dataSource.getRepository(Plant);
+  plantRepository = this.dataSource.getRepository(PlantEntity);
 
   async createPlant(body) {
-    let { plant } = body;
+    const { plant } = body;
     plant.id = uuidv4();
     this.dbService.create(plant);
   }
 
-  async addPlant(id) {
-    const response = await this.apiService.getResult(id, 'specific');
-    const { data } = response;
-    let test = {
-      id: data.id,
-      commonName: data.common_name,
-      scientificName: data.scientific_name,
-      imageUrl: data.main_species.image_url,
-    };
-    this.dbService.create(test);
-    console.log(test);
+  addPlant(plant: CreatePlantDto) {
+    return this.dbService.create(plant);
   }
 
   findAll() {
@@ -48,33 +42,23 @@ export class PlantService {
     return `This action updates a #${id} plant`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} plant`;
+  remove(id: string) {
+    return this.dbService.delete(id);
   }
 
   async searchPlants(query) {
     const response = await this.apiService.getResult(query);
     const { data } = response;
-    let test = await Promise.all(
+    const test = await Promise.all(
       data.map(async (plant) => {
         return {
           id: plant.id,
           commonName: plant.common_name,
           scientificName: plant.scientific_name,
           imageUrl: plant.image_url,
-          inCollection: await this.inCollection(plant.id),
         } as Partial<Plant>;
       })
     );
     return test;
-  }
-
-  async inCollection(id: string) {
-    let plant = await this.plantRepository.findOne({
-      where: {
-        id: id,
-      },
-    });
-    return plant ? true : false;
   }
 }
