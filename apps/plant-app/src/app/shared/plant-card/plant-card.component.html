@@ -4,31 +4,11 @@
     <div class="card-body">
         <h5 class="card-title">{{ plant.commonName }}</h5>
         <p class="card-text">{{ plant.scientificName }}</p>
-        <button class="btn btn-primary" (click)="open(content)">edit plant</button>
+        <button class="btn btn-primary" (click)="plantModal.open()">edit plant</button>
         <ng-content></ng-content>
+        <bryan-modal #plantModal>
+          
+        </bryan-modal>
     </div>
 </div>
 
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Edit this plant</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <form>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingCN" placeholder="commonName"
-                    [value]="plant.commonName">
-                <label for="floatingInput">Common name</label>
-            </div>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingSN" placeholder="scientificName"
-                    [value]=" plant.scientificName">
-                <label for="floatingPassword">Scientific name</label>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
-</ng-template>

@@ -20,6 +20,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
     SearchComponent,
     CreatePlantComponent,
     LoaderComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
