@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './screens/home/home.component';
 import { CollectionComponent } from './screens/collection/collection.component';
-import { PlantCardComponent } from './shared/plant-card/plant-card.component';
 import { SearchComponent } from './screens/search/search.component';
 import { FormsModule } from '@angular/forms';
 import { CreatePlantComponent } from './screens/create-plant/create-plant.component';
@@ -19,8 +17,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { LoaderComponent } from './shared/loader/loader.component';
-import { ModalComponent } from './shared/modal/modal.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,11 +25,8 @@ import { ModalComponent } from './shared/modal/modal.component';
     NavbarComponent,
     HomeComponent,
     CollectionComponent,
-    PlantCardComponent,
     SearchComponent,
     CreatePlantComponent,
-    LoaderComponent,
-    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +39,7 @@ import { ModalComponent } from './shared/modal/modal.component';
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EntityDataModule.forRoot(entityConfig),
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

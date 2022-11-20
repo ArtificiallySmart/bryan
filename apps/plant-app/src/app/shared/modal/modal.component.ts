@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Plant } from '@bryan/api-interfaces';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'bryan-modal',
@@ -6,11 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-  constructor() {}
+  constructor(public modalService: NgbModal) {}
 
-  open(){
-    console.log('open')
+  @Input()
+  plant?: Plant;
+
+  plantForm = new FormGroup({
+    commonName: new FormControl(''),
+    scientificName: new FormControl(''),
+    //image: new FormControl(''),
+  });
+
+  ngOnInit() {
+    if (this.plant) {
+      this.plantForm.setValue({
+        commonName: this.plant.commonName || '',
+        scientificName: this.plant.scientificName || '',
+        //image: this.plant.imageUrl || '',
+      });
+    }
   }
 
-  ngOnInit(): void {}
+  submit() {
+    return;
+  }
+
+  close() {
+    this.modalService.dismissAll();
+  }
 }

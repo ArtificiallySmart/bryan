@@ -4,11 +4,15 @@
     <div class="card-body">
         <h5 class="card-title">{{ plant.commonName }}</h5>
         <p class="card-text">{{ plant.scientificName }}</p>
-        <button class="btn btn-primary" (click)="plantModal.open()">edit plant</button>
-        <ng-content></ng-content>
-        <bryan-modal #plantModal>
-          
-        </bryan-modal>
     </div>
-</div>
+    <div class="card-body d-flex justify-content-between">
+        <button class="btn btn-primary" (click)="open(content)">edit plant</button>
+        <ng-content></ng-content>
+    </div>
 
+</div>
+<ng-template #content let-modal>
+    <bryan-modal [plant]="plant">
+        <ng-container title>Edit this plant</ng-container>
+    </bryan-modal>
+</ng-template>

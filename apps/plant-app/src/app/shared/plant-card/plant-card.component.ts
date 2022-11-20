@@ -17,15 +17,6 @@ export class PlantCardComponent {
   clickEvent = new EventEmitter<Plant>();
 
   open(content: unknown) {
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(
-        (result) => {
-          this.closeResult = `Closed with: ${result}`;
-        },
-        () => {
-          this.closeResult = `Dismissed`;
-        }
-      );
+    this.modalService.open(content);
   }
 }

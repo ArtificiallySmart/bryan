@@ -5,7 +5,7 @@ import { HomeComponent } from './screens/home/home.component';
 import { SearchComponent } from './screens/search/search.component';
 import { CreatePlantComponent } from './screens/create-plant/create-plant.component';
 
-const routes = [
+const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'collection', component: CollectionComponent },
   { path: 'search', component: SearchComponent },
