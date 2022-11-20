@@ -1,0 +1,14 @@
+.image{
+    display:grid;
+    place-items: center;
+    min-height: 100vh;
+    position: relative;
+}
+#eyes, #eyes img {
+    position:absolute;
+}
+.eye {
+    border-radius: 50%;
+        height: 50px;
+    width: 50px;
+}
